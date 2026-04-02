@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleverTap Web Push Demo</title>
+  <meta name="description" content="A lightweight CleverTap web push demo for senior stakeholder presentations." />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/idfc-first-logo.png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="logo-row">
+        <img src="/idfc-first-logo.png" alt="IDFC FIRST Bank" class="logo idfc" />
+        <span class="plus">×</span>
+        <img src="/qualitrix-logo.webp" alt="Qualitrix" class="logo qualitrix" />
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Stakeholder demo</p>
+        <h1>Website + CleverTap Web Push Demo</h1>
+        <p class="subtitle">
+          This demo shows the full journey: identify a visitor, track web events,
+          request browser push permission, and then target that user from CleverTap.
+        </p>
+      </div>
+
+      <div class="hero-card">
+        <div class="metric">
+          <span class="metric-label">Demo outcome</span>
+          <strong>Known user → tracked event → subscribed browser → push delivered</strong>
+        </div>
+        <ol>
+          <li>Open the site on <strong>Chrome</strong>.</li>
+          <li>Identify a demo user.</li>
+          <li>Trigger 1–2 events.</li>
+          <li>Click <strong>Enable Web Push</strong>.</li>
+          <li>Send a push from CleverTap.</li>
+        </ol>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <div class="section-title">
+          <h2>1) Configure user</h2>
+          <p>Use your own email so the profile is easy to find inside CleverTap.</p>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>Name</span>
+            <input id="name" type="text" value="Demo User" />
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input id="email" type="email" placeholder="name@example.com" />
+          </label>
+
+          <label>
+            <span>Phone (optional)</span>
+            <input id="phone" type="tel" placeholder="+919999999999" />
+          </label>
+
+          <label>
+            <span>Identity</span>
+            <input id="identity" type="text" placeholder="Will default to email if left blank" />
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button class="primary" id="identifyUserBtn">Identify User</button>
+          <button class="ghost" id="pushProfileBtn">Update Profile</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>2) Simulate website activity</h2>
+          <p>These buttons make the demo feel like a real acquisition or engagement flow.</p>
+        </div>
+
+        <div class="button-stack">
+          <button id="viewHomeBtn">Track Home Page Viewed</button>
+          <button id="viewOfferBtn">Track Credit Card Offer Viewed</button>
+          <button id="startJourneyBtn">Track Application Started</button>
+          <button id="clickCtaBtn">Track CTA Clicked</button>
+          <button id="purchaseIntentBtn">Track High Intent Event</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>3) Ask for push permission</h2>
+          <p>Ask after activity, not immediately on page load. That is also CleverTap's recommendation.</p>
+        </div>
+
+        <div class="permission-panel">
+          <div>
+            <span class="mini-label">Browser notification permission</span>
+            <div id="permissionStatus" class="status-pill">Checking…</div>
+          </div>
+          <div>
+            <span class="mini-label">Recommended browser</span>
+            <div class="status-pill neutral">Chrome desktop</div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="primary" id="enablePushBtn">Enable Web Push</button>
+          <button class="ghost" id="softPromptBtn">Trigger Soft Prompt Again</button>
+        </div>
+
+        <p class="fine-print">
+          If the browser was previously blocked, reset site notification permissions and refresh the page.
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>4) Demo checklist for seniors</h2>
+          <p>Use this exact story while presenting.</p>
+        </div>
+
+        <ul class="checklist">
+          <li>Website is hosted over HTTPS on GitHub Pages.</li>
+          <li>CleverTap Web SDK initializes with account ID + region.</li>
+          <li>User is identified with profile data.</li>
+          <li>Key actions are tracked as events.</li>
+          <li>Browser opt-in is captured for push.</li>
+          <li>CleverTap can now target and send a campaign.</li>
+        </ul>
+      </section>
+
+      <section class="card full">
+        <div class="section-title">
+          <h2>Live activity log</h2>
+          <p>This is just for presentation clarity. It helps non-technical seniors follow the flow.</p>
+        </div>
+
+        <div id="eventLog" class="event-log" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Edit <code>config.js</code> with your CleverTap account details before publishing.
+        For GitHub Pages web push, publish from the root domain repository:
+        <code>yourusername.github.io</code>.
+      </p>
+    </footer>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

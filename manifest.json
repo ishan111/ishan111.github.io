@@ -1,0 +1,14 @@
+{
+  "name": "CleverTap Demo",
+  "short_name": "CT Demo",
+  "display": "standalone",
+  "theme_color": "#a51c30",
+  "background_color": "#f6f8fc",
+  "icons": [
+    {
+      "src": "/idfc-first-logo.png",
+      "sizes": "804x285",
+      "type": "image/png"
+    }
+  ]
+}
