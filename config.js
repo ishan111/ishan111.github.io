@@ -5,8 +5,6 @@ window.CT_DEMO_CONFIG = {
   // Optional but recommended when your account is not on the default EU region
   region: "eu1",
 
-  // Usually leave blank for this demo
-  targetDomain: "",
 
   // Optional advanced setting from CleverTap Web SDK
   enableLocalStorageEncryption: false
