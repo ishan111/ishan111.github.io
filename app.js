@@ -146,21 +146,41 @@
     log(`Event tracked: ${name}`, props);
   }
 
-function enablePush(customTitle) {
+async function enablePush(customTitle) {
   const titleText = customTitle || "Stay updated with personalized alerts?";
 
-  setTimeout(() => {
+  try {
+    const reg = await navigator.serviceWorker.register('/clevertap_sw.js');
+    console.log('SW registered:', reg.scope);
+
+    const permission = await Notification.requestPermission();
+    console.log('Notification permission:', permission);
+
+    updatePermissionStatus();
+
+    if (permission !== 'granted') {
+      log('User did not grant browser notification permission.');
+      return;
+    }
+
+    // After native permission is granted, let CleverTap continue its web-push flow
     window.clevertap.notifications.push({
       titleText,
-      bodyText: "Allow notifications to receive updates.",
+      bodyText: "Allow notifications to receive offer reminders, onboarding nudges, and important updates.",
       okButtonText: "Allow",
       rejectButtonText: "No thanks",
       okButtonColor: "#a51c30",
+      askAgainTimeInSeconds: 5,
       serviceWorkerPath: "/clevertap_sw.js"
     });
 
-    console.log("CT push triggered after delay");
-  }, 2000);
+    log('Native permission granted and CleverTap web-push flow invoked.', {
+      serviceWorkerPath: '/clevertap_sw.js'
+    });
+  } catch (e) {
+    console.error(e);
+    log('Enable push failed.', String(e));
+  }
 }
 
   document.getElementById("identifyUserBtn").addEventListener("click", identifyUser);
