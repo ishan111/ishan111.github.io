@@ -146,21 +146,22 @@
     log(`Event tracked: ${name}`, props);
   }
 
-  function enablePush(customTitle) {
-    const titleText = customTitle || "Stay updated with personalized alerts?";
+function enablePush(customTitle) {
+  const titleText = customTitle || "Stay updated with personalized alerts?";
+
+  setTimeout(() => {
     window.clevertap.notifications.push({
       titleText,
-      bodyText: "Allow notifications to receive offer reminders, onboarding nudges, and important updates.",
+      bodyText: "Allow notifications to receive updates.",
       okButtonText: "Allow",
       rejectButtonText: "No thanks",
       okButtonColor: "#a51c30",
-      askAgainTimeInSeconds: 5,
       serviceWorkerPath: "/clevertap_sw.js"
     });
 
-    log("Push permission request triggered.", { serviceWorkerPath: "/clevertap_sw.js" });
-    setTimeout(updatePermissionStatus, 800);
-  }
+    console.log("CT push triggered after delay");
+  }, 2000);
+}
 
   document.getElementById("identifyUserBtn").addEventListener("click", identifyUser);
   document.getElementById("pushProfileBtn").addEventListener("click", updateProfile);
