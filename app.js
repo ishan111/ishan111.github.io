@@ -158,7 +158,7 @@
       askAgainTimeInSeconds: 5,
       serviceWorkerPath: "/clevertap_sw.js"
     });
-
+  }
   document.getElementById("identifyUserBtn").addEventListener("click", identifyUser);
   document.getElementById("pushProfileBtn").addEventListener("click", updateProfile);
 
